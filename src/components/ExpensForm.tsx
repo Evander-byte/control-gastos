@@ -48,6 +48,14 @@ const ExpensForm = () => {
 
         // Agregar nuevo gasto
         dispatch({ type: 'add-expense', payload: { expense } })
+
+        // Reiniciar el state
+        setExpense({
+            amount: 0,
+            expenseName: '',
+            category: '',
+            date: new Date()
+        })
     }
 
     return (
@@ -68,6 +76,7 @@ const ExpensForm = () => {
                     className="bg-slate-100 p-2"
                     name="expenseName"
                     onChange={handleChange}
+                    value={expense.expenseName}
                 />
             </div>
             <div className="flex flex-col gap-2">
@@ -76,12 +85,13 @@ const ExpensForm = () => {
                     className="text-xl"
                 >Cantidad:</label>
                 <input
-                    type="text"
+                    type="number"
                     id="amount"
-                    placeholder="Añade el nombre del gasto"
+                    placeholder="Añade la cantidad del gasto ej. $300"
                     className="bg-slate-100 p-2"
                     name="amount"
                     onChange={handleChange}
+                    value={expense.amount}
                 />
             </div>
             <div className="flex flex-col gap-2">
@@ -94,6 +104,7 @@ const ExpensForm = () => {
                     className="bg-slate-100 p-2"
                     name="category"
                     onChange={handleChange}
+                    value={expense.category}
                 >
                     <option value="">-- Seleciona una categoría --</option>
                     {categories.map(category => (
