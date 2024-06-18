@@ -48,7 +48,7 @@ const ExpenseDetail = ({ expense }: ExpenseDetailProps) => {
                 leadingActions={leadingActions()}
                 trailingActions={trailingActions()}
             >
-                <div className="bg-white shadow-lg p-10 w-full border-b border-gray-200 flex items-center gap-5">
+                <div className="bg-white p-10 border-b w-full border-gray-200 flex items-center gap-5 rounded-lg">
                     <div className="">
                         <img
                             src={`/icono_${categoryInfo.icon}.svg`}
