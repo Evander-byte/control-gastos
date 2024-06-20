@@ -5,6 +5,7 @@ import BudgetTracker from "./components/BudgetTracker"
 import ExpenseModal from "./components/ExpensModal"
 import ExpensList from "./components/ExpensList"
 import FilterByCategory from "./components/FilterByCategory"
+import SideBar from "./layouts/SideBar"
 
 
 function App() {
@@ -26,22 +27,30 @@ function App() {
           Planificador de Gastos
         </h1>
       </header>
+      <div className="flex h-screen">
+        <aside className="bg-red-500 w-32">
+          <SideBar />
+        </aside>
+        <main className="w-full">
+          <div className="max-w-3xl md:max-w-xl sm:max-w-xs mx-auto bg-white shadow-lg rounded-lg mt-10 p-10">
+            {isValidBudget
+              ? <BudgetTracker />
+              : <BudgetForm />
+            }
+          </div>
 
-      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg mt-10 p-10">
-        {isValidBudget
-          ? <BudgetTracker />
-          : <BudgetForm />
-        }
+          {isValidBudget && (
+            <div className="max-w-3xl md:max-w-xl mx-auto py-10">
+
+              <FilterByCategory />
+              <ExpensList />
+              <ExpenseModal />
+            </div>
+          )}
+        </main>
       </div>
 
-      {isValidBudget && (
-        <main className="max-w-3xl mx-auto py-10">
 
-          <FilterByCategory />
-          <ExpensList />
-          <ExpenseModal />
-        </main>
-      )}
     </>
   )
 }
